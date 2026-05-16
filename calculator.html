@@ -1,65 +1,23 @@
 <!DOCTYPE html>
-<html lang="en=EN">
-  <head>
-    <meta charset="UTF-8">
-      <title>Calculator</title>
-  </head>
-  <style>
-  body{
-       background:rgb(255,226,218);
-       color: rgb(42,42,42);
-       font-family: Arial, sans-serif;
-       display: flex;
-       align-items: center;
-       justify-content: center;
-       height: 100vh;
-  }
-  .container {
-       width: 400px;
-       background: #fff;
-       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-       }
-  table {
-       border-collapse: collapse;
-       width: 100%;
-  }
-  td {
-       font-size: 2em;
-       padding: 0.7em;
-       text-align: center;
-       cursor: default;
-       transition: 0.2s;
-  }
-  td:hover {
-       background-color: rgb(199, 199, 199);
-  }
-  input {
-       padding: 16px 10px;
-       width: 100%;
-       border: 0;
-       font-size: 2em;
-       background-color: #333;
-       color: #eee;
-       text-align: right;
-  }
-  .vari {
-       background-color: rgb(70,70,70);
-       color: #eee;
-  }
-  .vari:hover{
-       background-color:#222;
-  }
-  </style>
-  <body>
-    <div class="container">
-        <label for="useinp"></label><input type="text" id="useinp" placeholder="0" disabled/>
-        <label for="compout"></label><input type="text" id="compout" placeholder="0" disabled/>
+<html>
+
+<head>
+     <meta charset="UTF-8">
+     <meta lang="RU-ru">
+     <title>Calculator</title>
+     <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+     <div class="container">
+          <label for="useinp"></label><input type="text" id="useinp" placeholder="0" disabled />
+          <label for="compout"></label><input type="text" id="compout" placeholder="0" disabled />
           <table>
                <tr>
-               <td onclick="calcad('(')">(</td>
-               <td onclick="calcad('(')">)</td>
-               <td onclick="removech( )">&lt;-</td>
-               <td onclick="calcad('+')" class="vari">+</td>
+                    <td onclick="calcad('(')">(</td>
+                    <td onclick="calcad('(')">)</td>
+                    <td onclick="removech( )">&lt;-</td>
+                    <td onclick="calcad('+')" class="vari">+</td>
                </tr>
                <tr>
                     <td onclick="calcad('7')">7</td>
@@ -86,37 +44,8 @@
                     <td class="equalbtn('=')" onclick="execm()">=</td>
                </tr>
           </table>
-   </div>
-   <script>
-       var tbcal = "";
-       const useinp = document.getElementById('useinp');
-   const compinp = document.getElementById('compinp');
-   function calcad(value) {
-        tbcal += value;
-        useinp.value = tbcal;
-   }
-   function removech( ) {
-        tbcal = tbcal.substring(0, tbcal.length - 1);
-        useinp.value = tbcal;
-   }
-   function execm( ) {
-        if (tbcal.length === 0 || tbcal === "") {
-             alert("Needs an input");
-             return;
-        }
-       var ans;
-       try {
-           ans = eval(tbcal);
-           compinp.value = ans;
-       } catch (err) {
-           alert("Invalid Input");
-       }
-   }
-   function reset() {
-        useinp.value = "";
-        compinp.value = "";
-        tbcal = "";
-   }
-   </script>
+     </div>
+     <script src="script.js"></script>
 </body>
+
 </html>
