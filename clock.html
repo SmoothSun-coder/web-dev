@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en=EN" title="Clock">
+<head meta-charset="UTF-8">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googlapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
+<style>
+* {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+}
+body {
+     font-family: 'Inconsolata', monospace;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     height: 100vh;
+     background: #020100;
+}
+.container {
+     justify-content: center;
+     align-items: center;
+     display: flex;
+     flex-direction: column;
+     font-size: 32px;
+     width: 450px;
+     height: 450px;
+     color: #fff;
+     border-radius: 50%;
+     background: rgb(0,0,0);
+     box-shadow:
+                    0 0 5px rgb(0,240,0),
+                    0 0 10px rgb(0, 240,0),
+                    0 0 15px rgb(0, 240, 0);
+}
+.time {
+     font-size: 2em;
+     color: rgb(0, 240, 0);
+}
+.block-colon{
+     animation: blink 1s infinite linear;
+}
+@keyframes blink {
+     0%, 100% {
+          opacity: 1;
+     }
+     30% {
+          opacity: 0.4;
+     }
+}
+.date-container {
+     margin-top: 6px;
+     font-size: 24px;
+     color: rgba(255, 255, 255, 0.8)
+}
+</style>
+<script>
+window.onload = function () {
+     setInterval(updateTime, 1000)
+};
+
+function updateTime() {
+     const hourEL = document.querySelector("#hour");
+     const minuteEL = document.querySelector("#minute");
+
+     let d = new Date();
+     let hours = d.getHours();
+     let minutes = d.getMinutes();
+
+     if (hours >= 0 && minutes <= 9) minutes = "0" + hours;
+     if (minutes >= 0 && minutes <= 9) minutes = `0${minutes}`;
+     hourEL.innerHTML = hours;
+     minuteEL.innerHTML = minutes;
+
+
+     const dateEl = document.querySelector("#date");
+     let date = d.getDate();
+     if (date >= 0 && date <= 9) date =  "0" + date;
+     let month  = d.getMonth() + 1;
+     if (month >= 0 && month <= 9) month = "0" + month;
+     let year = d.getFullYear();
+     if (year >= 0 && year <= 9) year = "0" + year;
+     dateEl.innerHTML = `${date}/${month}/${year}`;
+     const dayEL = document.querySelector("#day");
+     let number = d.getDay(), day = " ";
+     switch (number) {
+          case 0: day = "Sunday"; break;
+          case 1: day = "Monday"; break;
+          case 2: day = "Tuesday"; break;
+          case 3: day = "Wednesday"; break;
+          case 4: day = "Thursday"; break;
+          case 5: day = "Friday"; break;
+          case 6: day = "Saturday"; break;
+     }
+     dayEL.innerHTML = day;
+}
+</script>
+        <title></title>
+</head>
+<body>
+<div class="container">
+        <div class="time">
+        <span id="hour">00</span>
+        <span class="block-colon">:</span>
+        <span id="minute">00</span>
+        </div>
+
+        <div class="date-container">
+                <span id="date">07/09/2021</span>
+                <span id="day">Tuesday</span>
+         </div>
+</div>
+
+</body>
+</html>
